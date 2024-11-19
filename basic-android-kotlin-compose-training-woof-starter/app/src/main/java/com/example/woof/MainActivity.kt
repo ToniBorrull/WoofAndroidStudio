@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -113,8 +114,15 @@ fun DogItem(
             Spacer(modifier = Modifier.weight(1f))
             DogItemButton(
                 expanded = expanded,
-                onClick = { /*TODO*/ }
+                onClick = { expanded = !expanded }
             )
+        }
+        if(expanded){
+        DogHobby(dog.hobbies,
+            modifier = Modifier.padding(start = dimensionResource(R.dimen.padding_medium),
+                end =  dimensionResource(R.dimen.padding_medium),
+                top =  dimensionResource(R.dimen.padding_small),
+                bottom =  dimensionResource(R.dimen.padding_medium)))
         }
     }
 }
@@ -189,6 +197,14 @@ fun DogItemButton(expanded: Boolean,
 fun DogHobby(
     @StringRes dogHobby: Int,
     modifier: Modifier = Modifier, ){
+
+    Column(modifier = modifier) {
+        Text(text = stringResource(R.string.about),
+        style = MaterialTheme.typography.displayMedium)
+        Text(text = stringResource(dogHobby),
+            style = MaterialTheme.typography.bodyLarge)
+
+    }
 
 }
 /**
